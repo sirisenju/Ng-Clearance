@@ -1,3 +1,7 @@
+import 'package:clearance_proj/screens/sub_screens/assessments.dart';
+import 'package:clearance_proj/screens/sub_screens/events.dart';
+import 'package:clearance_proj/screens/sub_screens/exams.dart';
+import 'package:clearance_proj/screens/sub_screens/sch_classes.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -137,43 +141,77 @@ class _HomePageState extends State<HomePage> {
                         ),
                         Row(
                           children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.blue,
-                                  borderRadius: BorderRadius.circular(10.0)),
-                              child: Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: InkWell(
-                                  onTap: (){
-                                    return handleButtonTap(0);
-                                    //event
-                                  },
-                                  child: const Text(
+                            InkWell(
+                              onTap: (){
+                                return handleButtonTap(0);
+                                //event
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: selectedPageIndex == 0 ? Colors.blue : Colors.transparent,
+                                  borderRadius: BorderRadius.circular(10.0)
+                                ),
+                                child: const Padding(
+                                  padding: EdgeInsets.only(left: 5.0, right: 5.0),
+                                  child: Text(
                                     "Classes",
                                     style: TextStyle(fontSize: 17),
                                   ),
                                 ),
                               ),
                             ),
-                            const Padding(
-                              padding: EdgeInsets.all(4.0),
-                              child: Text(
-                                "Assessments",
-                                style: TextStyle(fontSize: 17),
+                            InkWell(
+                              onTap: (){
+                                return handleButtonTap(1);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: selectedPageIndex == 1 ? Colors.blue : Colors.transparent,
+                                    borderRadius: BorderRadius.circular(10.0)
+                                ),
+                                child: const Padding(
+                                  padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                                  child: Text(
+                                    "Assessments",
+                                    style: TextStyle(fontSize: 17),
+                                  ),
+                                ),
                               ),
                             ),
-                            const Padding(
-                              padding: EdgeInsets.all(4.0),
-                              child: Text(
-                                "Exams",
-                                style: TextStyle(fontSize: 17),
+                            InkWell(
+                              onTap: (){
+                                return handleButtonTap(2);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: selectedPageIndex == 2 ? Colors.blue : Colors.transparent,
+                                    borderRadius: BorderRadius.circular(10.0)
+                                ),
+                                child: const Padding(
+                                  padding: EdgeInsets.only(left: 5.0, right: 5.0),
+                                  child: Text(
+                                    "Exams",
+                                    style: TextStyle(fontSize: 17),
+                                  ),
+                                ),
                               ),
                             ),
-                            const Padding(
-                              padding: EdgeInsets.all(4.0),
-                              child: Text(
-                                "Events",
-                                style: TextStyle(fontSize: 17),
+                            InkWell(
+                              onTap: (){
+                                return handleButtonTap(3);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: selectedPageIndex == 3 ? Colors.blue : Colors.transparent,
+                                    borderRadius: BorderRadius.circular(10.0)
+                                ),
+                                child: const Padding(
+                                  padding: EdgeInsets.only(left: 5.0, right: 5.0),
+                                  child: Text(
+                                    "Events",
+                                    style: TextStyle(fontSize: 17),
+                                  ),
+                                ),
                               ),
                             ),
                           ],
@@ -229,31 +267,19 @@ class _HomePageState extends State<HomePage> {
         return const Sch_Classes();
       case 1:
         return const Assessments();
+      case 2:
+        return const Exams();
+      case 3:
+        return const Events();
       default:
-        return DefaultPageContent();
+        return const DefaultPageContent();
     }
   }
 }
 
-class Sch_Classes extends StatelessWidget {
-  const Sch_Classes({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Text("Class");
-  }
-}
-
-class Assessments extends StatelessWidget {
-  const Assessments({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Text("Assessments");
-  }
-}
-
+//default screen
 class DefaultPageContent extends StatelessWidget {
+  const DefaultPageContent({super.key});
   @override
   Widget build(BuildContext context) {
     return const Center(
@@ -261,7 +287,3 @@ class DefaultPageContent extends StatelessWidget {
     );
   }
 }
-
-
-
-

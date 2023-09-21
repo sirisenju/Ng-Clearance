@@ -19,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
 
     // size of the device
     final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+    //final screenHeight = MediaQuery.of(context).size.height;
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
 
@@ -55,10 +55,10 @@ class _LoginPageState extends State<LoginPage> {
                         child: TextFormField(
                           controller: emailController,
                           decoration: InputDecoration(
-                            border: OutlineInputBorder(), labelText: "Email",
+                            border: const OutlineInputBorder(), labelText: "Email",
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10.0),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 //color: Colors.red,
                                 width: 1.4,
                               ),
@@ -78,10 +78,10 @@ class _LoginPageState extends State<LoginPage> {
                           obscureText: true,
                           controller: passwordController,
                           decoration: InputDecoration(
-                            border: OutlineInputBorder(), labelText: "Password",
+                            border: const OutlineInputBorder(), labelText: "Password",
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10.0),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 //color: Colors.red,
                                 width: 1.5,
                               ),
