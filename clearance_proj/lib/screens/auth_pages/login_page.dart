@@ -1,4 +1,5 @@
 import 'package:clearance_proj/screens/home.dart';
+import 'package:clearance_proj/screens/navigation.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -116,8 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                                     Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => HomePage(
-                                            email: emailController.text,
+                                          builder: (context) => const Navigation(
                                           )),
                                     );
                                   } else {

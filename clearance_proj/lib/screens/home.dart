@@ -29,13 +29,6 @@ class _HomePageState extends State<HomePage> {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    int _currentIndex = 0;
-    final List<Widget> _screens = [
-      // HomeScreen(),
-      // ProfileScreen(),
-      // SettingsScreen(),
-    ];
-
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -166,7 +159,7 @@ class _HomePageState extends State<HomePage> {
                               },
                               child: Container(
                                 decoration: BoxDecoration(
-                                    color: selectedPageIndex == 1 ? Colors.blue : Colors.transparent,
+                                    color: selectedPageIndex == 1 ? Colors.orangeAccent : Colors.transparent,
                                     borderRadius: BorderRadius.circular(10.0)
                                 ),
                                 child: const Padding(
@@ -184,7 +177,7 @@ class _HomePageState extends State<HomePage> {
                               },
                               child: Container(
                                 decoration: BoxDecoration(
-                                    color: selectedPageIndex == 2 ? Colors.blue : Colors.transparent,
+                                    color: selectedPageIndex == 2 ? Colors.green : Colors.transparent,
                                     borderRadius: BorderRadius.circular(10.0)
                                 ),
                                 child: const Padding(
@@ -202,7 +195,7 @@ class _HomePageState extends State<HomePage> {
                               },
                               child: Container(
                                 decoration: BoxDecoration(
-                                    color: selectedPageIndex == 3 ? Colors.blue : Colors.transparent,
+                                    color: selectedPageIndex == 3 ? Colors.cyanAccent : Colors.transparent,
                                     borderRadius: BorderRadius.circular(10.0)
                                 ),
                                 child: const Padding(
@@ -231,36 +224,10 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          //navigating with button
-          currentIndex: _currentIndex,
-          onTap: (index) {
-            setState(() {
-              _currentIndex = index; // Update the current screen index
-            });
-          },
-          //bottom navbar icons
-          type: BottomNavigationBarType.fixed,
-          // Fixed
-          //backgroundColor: Colors.black, // <-- This works for fixed
-          selectedItemColor: Colors.greenAccent,
-          unselectedItemColor: Colors.grey,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
-              label: "Home",
-            ),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.library_books_outlined), label: "Courses"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.support_agent_rounded), label: "Clearance"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.settings), label: "Settings"),
-          ],
-        ),
       ),
     );
   }
+
   Widget buildContext() {
     switch(selectedPageIndex){
       case 0:
