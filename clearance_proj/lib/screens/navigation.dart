@@ -22,7 +22,7 @@ class _NavigationState extends State<Navigation> {
     // final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: <Widget>[
-        const HomePage(email: 'siri@gmail.com',),
+        const HomePage(),
         const ClearancePage(),
         const CoursesPage()
       ] [_currentIndex],

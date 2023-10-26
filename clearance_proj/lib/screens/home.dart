@@ -2,12 +2,12 @@ import 'package:clearance_proj/screens/sub_screens/assessments.dart';
 import 'package:clearance_proj/screens/sub_screens/events.dart';
 import 'package:clearance_proj/screens/sub_screens/exams.dart';
 import 'package:clearance_proj/screens/sub_screens/sch_classes.dart';
+import 'package:clearance_proj/screens/welcome_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.email});
-
-  final String email;
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -21,6 +21,14 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       selectedPageIndex = index;
     });
+  }
+
+  //handle logout
+  void logoutUser(){
+    FirebaseAuth.instance.signOut();
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(
+        builder: (context) => const Welcome()));
   }
 
   @override
@@ -40,12 +48,12 @@ class _HomePageState extends State<HomePage> {
             IconButton(
               alignment: Alignment.center,
               icon: const Icon(
-                Icons.menu,
+                Icons.logout,
                 size: 30,
               ),
               onPressed: () {
                 //icon on pressed
-                print("hello world");
+                logoutUser();
               },
             )
           ],

@@ -1,6 +1,5 @@
 import 'package:clearance_proj/screens/auth_pages/adminLogin.dart';
-import 'package:clearance_proj/screens/auth_pages/login_page.dart';
-import 'package:clearance_proj/screens/auth_pages/userReg.dart';
+import 'package:clearance_proj/screens/auth_pages/loginPage.dart';
 import 'package:flutter/material.dart';
 
 class Welcome extends StatelessWidget {
@@ -57,8 +56,8 @@ class Welcome extends StatelessWidget {
                               context: context,
                               builder: (builder){
                                 return SizedBox(
-                                  height: screenHeight * 0.90,
-                                  child: const LoginPage()
+                                  height: screenHeight * 0.80,
+                                    child: const LoginPage()
                                 );
                         });
                       },
@@ -74,25 +73,6 @@ class Welcome extends StatelessWidget {
                     children: [
                       const SizedBox(
                         height: 60,
-                      ),
-                      InkWell(
-                        child: const Text("Register", style: TextStyle(
-                          fontSize: 20
-                        ),),
-                        onTap: (){
-                          showModalBottomSheet(
-                              isScrollControlled: true,
-                              context: context,
-                              builder: (builder){
-                                return SizedBox(
-                                    height: screenHeight * 0.80,
-                                    child: const UserRegistration()
-                                );
-                              });
-                        },
-                      ),
-                      const SizedBox(
-                        width: 130,
                       ),
                       GestureDetector(
                         child: const Text("Login as Admin", style: TextStyle(

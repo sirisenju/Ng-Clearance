@@ -10,6 +10,17 @@ class AdminPage extends StatefulWidget {
 class _AdminPageState extends State<AdminPage> {
   @override
   Widget build(BuildContext context) {
-    return const Text("Admin page");
+    return const Scaffold(
+      backgroundColor: Colors.cyanAccent,
+      body: SafeArea(
+        child: Column(
+          children: [
+            Text("Admin panel", style: TextStyle(
+              fontSize: 26
+            ),)
+          ],
+        ),
+      ),
+    );
   }
 }
