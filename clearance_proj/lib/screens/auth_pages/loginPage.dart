@@ -1,5 +1,6 @@
 import 'package:clearance_proj/screens/auth_pages/registerPage.dart';
 import 'package:clearance_proj/screens/customWidgets/custom_formFields.dart';
+import 'package:clearance_proj/screens/navigation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -28,6 +29,7 @@ class _LoginPageState extends State<LoginPage> {
         ));
 
     try{
+      //firebase authentication
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _emailAddressController.text.trim(),
           password: _passwordController.text.trim());
@@ -40,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
       //navigate to new screen upon success
       Navigator.pushReplacement(
           context, MaterialPageRoute(
-          builder: (context) => const HomePage()));
+          builder: (context) => const Navigation()));
     }
     on FirebaseAuthException catch (e){
       //pop loading circle

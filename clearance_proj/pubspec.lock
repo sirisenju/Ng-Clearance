@@ -89,6 +89,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.1"
+  ffi:
+    dependency: transitive
+    description:
+      name: ffi
+      sha256: "7bf0adc28a23d395f19f3f1eb21dd7cfd1dd9f8e1c50051c069122e6853bc878"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
+  file_picker:
+    dependency: "direct main"
+    description:
+      name: file_picker
+      sha256: "903dd4ba13eae7cef64acc480e91bf54c3ddd23b5b90b639c170f3911e489620"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.0.0"
   firebase_auth:
     dependency: "direct main"
     description:
@@ -137,6 +153,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.8.1"
+  firebase_storage:
+    dependency: "direct main"
+    description:
+      name: firebase_storage
+      sha256: c00e907fe1a136a662c47d60faf971094a5441095438c065f66c2f39dff47a9a
+      url: "https://pub.dev"
+    source: hosted
+    version: "11.4.0"
+  firebase_storage_platform_interface:
+    dependency: transitive
+    description:
+      name: firebase_storage_platform_interface
+      sha256: "387f903eb7cbe63e77197e73987c84201335c42250b7284580e3bac42ffd9dd4"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.0"
+  firebase_storage_web:
+    dependency: transitive
+    description:
+      name: firebase_storage_web
+      sha256: "6128bfd8e03418983d457b980bf4fcc73e1fc88f51d00b3e04db8376a41d3047"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.6.11"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -150,6 +190,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.3"
+  flutter_plugin_android_lifecycle:
+    dependency: transitive
+    description:
+      name: flutter_plugin_android_lifecycle
+      sha256: b068ffc46f82a55844acfa4fdbb61fad72fa2aef0905548419d97f0f95c456da
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.17"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -168,6 +216,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "11.1.4"
+  http:
+    dependency: transitive
+    description:
+      name: http
+      sha256: "759d1a329847dd0f39226c688d3e06a6b8679668e350e2891a6474f8b4bb8525"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   http_parser:
     dependency: transitive
     description:
@@ -309,6 +365,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  win32:
+    dependency: transitive
+    description:
+      name: win32
+      sha256: "350a11abd2d1d97e0cc7a28a81b781c08002aa2864d9e3f192ca0ffa18b06ed3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.9"
 sdks:
   dart: ">=3.0.6 <4.0.0"
   flutter: ">=3.7.0"

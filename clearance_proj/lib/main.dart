@@ -1,5 +1,3 @@
-//import 'package:clearance_proj/screens/home.dart';
-//import 'package:clearance_proj/screens/login_page.dart';
 import 'package:clearance_proj/screens/splash_screen.dart';
 import 'package:clearance_proj/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';

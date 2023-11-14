@@ -4,7 +4,6 @@ import 'package:clearance_proj/screens/nav_screens/adminPanel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../customWidgets/alertWidget.dart';
 
 class AdminRegistration extends StatefulWidget {
@@ -94,7 +93,7 @@ class _AdminRegistrationState extends State<AdminRegistration> {
       body: SafeArea(
           child: Column(
             children: [
-              Text("Register as admin."),
+              const Text("Register as admin."),
               const SizedBox(
                 height: 20,
               ),

@@ -41,7 +41,6 @@ class _AdminLoginState extends State<AdminLogin> {
 
       //Check if the logged-in user is an admin.
       if (await isAdmin(userCredential.user!.uid)) {
-
         //navigate to new screen upon success
         Navigator.pushReplacement(
             context, MaterialPageRoute(
@@ -83,7 +82,7 @@ class _AdminLoginState extends State<AdminLogin> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Welcome back. Enter your details to continue."),
+          const Text("Welcome back. Enter your details to continue."),
           MyFormField(
               controller: _emailController,
               labelText: "Email",
@@ -102,7 +101,7 @@ class _AdminLoginState extends State<AdminLogin> {
                 // print("zero progress");
                 loginAdmin();
               },
-              child: Text("Login"),
+              child: const Text("Login"),
             ),
           ),
           GestureDetector(
@@ -111,7 +110,7 @@ class _AdminLoginState extends State<AdminLogin> {
                   context, MaterialPageRoute(
                   builder: (context) => const AdminRegistration()));
             },
-              child: Text("Create admin account?", style: TextStyle(
+              child: const Text("Create admin account?", style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 20
               ),)
