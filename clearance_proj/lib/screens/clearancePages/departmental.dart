@@ -39,20 +39,20 @@ class _DepartmentClearanceState extends State<DepartmentClearance> {
   void openFilePicker() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       allowMultiple: false,
-      allowedExtensions: ["pdf", "jpg"]// Disallow selecting multiple files
+      // allowedExtensions: ["pdf", "jpg"]// Disallow selecting multiple files
     );
 
     if (result != null) {
       PlatformFile file = result.files.first;
       String customFileName = fileNameController.text;
       setState(() {
-        selectedFileName = customFileName.isNotEmpty ? customFileName : file.name;
+        selectedFileName =
+        customFileName.isNotEmpty ? customFileName : file.name;
         _fileName = result.files.first.name;
         documentFile =
             File(file.path!); // Create a File object from the file path
         fileNameController.clear();
       });
-
     } else {
       // User canceled the picker
       setState(() {
@@ -74,8 +74,7 @@ class _DepartmentClearanceState extends State<DepartmentClearance> {
     // Create a new document entry in Firestore.
     await FirebaseFirestore.instance.collection('user_documents')
         .doc(userUid)
-        .collection('documents')
-        .add({
+        .collection('documents').doc("departmental").set({
       'filename': filename,
       'url': downloadURL,
       'timestamp': FieldValue.serverTimestamp(),
@@ -84,10 +83,10 @@ class _DepartmentClearanceState extends State<DepartmentClearance> {
 
     // If the upload is successful, show the success SnackBar
     showSuccessSnackBar("Document uploaded successfully");
-    clearTextfield();//clear text field
+    clearTextfield(); //clear text field
     print("successful");
-
   }
+
 
   //show snackbar
   void showSuccessSnackBar(String message) {
@@ -107,13 +106,14 @@ class _DepartmentClearanceState extends State<DepartmentClearance> {
       body: SafeArea(
         child: Column(
           children: [
-            Text("Welcome to your Departmental Clearance Guide."),
-            Text("Pls make sure to submit the following documents listed below in a single pdf"),
+            const Text("Welcome to your Departmental Clearance Guide."),
+            const Text(
+                "Pls make sure to submit the following documents listed below in a single pdf"),
             ElevatedButton(
-              onPressed: (){
+              onPressed: () {
                 openFilePicker();
               },
-              child: Text("click to select the file"),
+              child: const Text("click to select the file"),
             ),
             MyFormField(
                 controller: fileNameController,
@@ -124,17 +124,70 @@ class _DepartmentClearanceState extends State<DepartmentClearance> {
               onPressed: () {
                 uploadFiles(user!.uid, documentFile!, fileNameController.text);
               },
-              child: Text('upload'),
+              child: const Text('upload'),
             ),
             Text(_fileName),
+            StatusWidget(userID: user!.uid)
           ],
         ),
       ),
     );
   }
+
   @override
   void dispose() {
     fileNameController.dispose();
     super.dispose();
+  }
+}
+
+// Assuming you have a reference to the user document
+Future<String> getStatus(String userID) async {
+  DocumentReference userRef = FirebaseFirestore.instance.collection(
+      'user_documents').doc(userID);
+  try {
+    CollectionReference departmentalCollectionRef = userRef.collection(
+        'documents');
+    DocumentSnapshot departmentalDoc = await departmentalCollectionRef.doc(
+        'departmental').get();
+
+    if (departmentalDoc.exists) {
+      Map<String, dynamic> data = departmentalDoc.data() as Map<
+          String,
+          dynamic>;
+
+      if (data.containsKey('status')) {
+        String status = data['status'];
+        return status;
+      } else {
+        return 'Status field does not exist in the document.';
+      }
+    } else {
+      return 'Departmental document does not exist.';
+    }
+  } catch (e) {
+    return 'Error getting status: $e';
+  }
+}
+
+class StatusWidget extends StatelessWidget {
+  final String userID;
+
+  StatusWidget({required this.userID});
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<String>(
+      future: getStatus(userID),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        } else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        } else {
+          return Text('Status: ${snapshot.data}');
+        }
+      },
+    );
   }
 }
