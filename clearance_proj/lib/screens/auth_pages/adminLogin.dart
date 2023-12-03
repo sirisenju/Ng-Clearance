@@ -79,7 +79,7 @@ class _AdminLoginState extends State<AdminLogin> {
 
     //height and width
     final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+    // final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       backgroundColor: Colors.white,
