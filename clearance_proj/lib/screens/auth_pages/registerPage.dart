@@ -99,74 +99,90 @@ class _UserRegistrationState extends State<UserRegistration> {
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
-          child: Column(
-            children: [
-              const Text("Enter Your Details correctly to register!"),
-              const SizedBox(
-                height: 20,
-              ),
-               MyFormField(
-                controller: _firstNameController,
-                labelText: "First name",
-                hideText: false,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              MyFormField(
-                controller: _lastNameController,
-                labelText: "Last name",
-                hideText: false,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              MyFormField(
-                controller: _userEmailController,
-                labelText: "Email address",
-                hideText: false,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              MyFormField(
-                controller: _matNumberController,
-                labelText: "Mat number",
-                hideText: false,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              MyFormField(
-                controller: _passwordController,
-                labelText: "Password",
-                hideText: true,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              MyFormField(
-                controller: _confirmPasswordController,
-                labelText: "Confirm password",
-                hideText: false,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                width: 280,
-                child: MaterialButton(
-                  color: Colors.greenAccent,
-                  onPressed: () {
-                    registerUser();
-                  },
-                  child: const Text("Register"),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 20,
                 ),
-              ),
-              const SizedBox(
-                height: 30,
-              )
-            ],
+                const Text("Enter Your Details correctly to register!",
+                  style: TextStyle(
+                    fontSize: 23,
+                    fontWeight: FontWeight.w500
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                 MyFormField(
+                  controller: _firstNameController,
+                  labelText: "First name",
+                  hideText: false,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                MyFormField(
+                  controller: _lastNameController,
+                  labelText: "Last name",
+                  hideText: false,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                MyFormField(
+                  controller: _userEmailController,
+                  labelText: "Email address",
+                  hideText: false,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                MyFormField(
+                  controller: _matNumberController,
+                  labelText: "Mat number",
+                  hideText: false,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                MyFormField(
+                  controller: _passwordController,
+                  labelText: "Password",
+                  hideText: true,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                MyFormField(
+                  controller: _confirmPasswordController,
+                  labelText: "Confirm password",
+                  hideText: false,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  width: screenWidth,
+                  child: MaterialButton(
+                    height: 60,
+                    color: Colors.indigoAccent[200],
+                    onPressed: () {
+                      registerUser();
+                    },
+                    child: const Text("Register",
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.w600,
+                        fontSize: 23,),),
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                )
+              ],
+            ),
           ),
         ),
       ),

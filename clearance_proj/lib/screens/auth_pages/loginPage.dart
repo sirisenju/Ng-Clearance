@@ -3,9 +3,7 @@ import 'package:clearance_proj/screens/customWidgets/custom_formFields.dart';
 import 'package:clearance_proj/screens/navigation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../customWidgets/alertWidget.dart';
-import '../home.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -59,68 +57,95 @@ class _LoginPageState extends State<LoginPage> {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: Colors.cyan,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text("Enter your login details: ",
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(left: 8, top: 10, right: 8, bottom: 10),
+              child: Text("Enter your login details: ",
+                style: TextStyle(
+                  fontSize: 23,
+                  fontWeight: FontWeight.w500
+                ),
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          MyFormField(
-            controller: _emailAddressController,
-            labelText: "Email address",
-            hideText: false,
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          MyFormField(
-            controller: _passwordController,
-            labelText: "Password",
-            hideText: true,
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          SizedBox(
-            width: 280,
-            child: MaterialButton(
-              color: Colors.greenAccent,
-              onPressed: () {
-                loginUser();
-              },
-              child: const Text("Login"),
+            const SizedBox(
+              height: 10,
             ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              const Text("Don't have an account?"),
-              GestureDetector(
-                onTap: (){
-                  Navigator.pushReplacement(
-                      context, MaterialPageRoute(
-                      builder: (context) => const UserRegistration()
-                  )
-                  );
-                },
-                  child: const Text(" Register!",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    MyFormField(
+                      controller: _emailAddressController,
+                      labelText: "Email address",
+                      hideText: false,
                     ),
-                  )
-              )
-            ],
-          )
-        ],
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    MyFormField(
+                      controller: _passwordController,
+                      labelText: "Password",
+                      hideText: true,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    SizedBox(
+                      width: screenWidth,
+                      child: MaterialButton(
+                        height: 60,
+                        color: Colors.indigoAccent[200],
+                        onPressed: () {
+                          loginUser();
+                        },
+                        child: const Text("Login",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 23,
+                          color: Colors.white
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        const Text("Don't have an account?", style: TextStyle(
+                          fontSize: 18,
+                        ),),
+                        GestureDetector(
+                            onTap: (){
+                              Navigator.pushReplacement(
+                                  context, MaterialPageRoute(
+                                  builder: (context) => const UserRegistration()
+                              )
+                              );
+                            },
+                            child: const Text(" Register!",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                fontSize: 18,
+                                color: Colors.indigoAccent
+                              ),
+                            )
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

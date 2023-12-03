@@ -61,18 +61,22 @@ class UserDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('User Details'),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Text('Name: ${user.firstName}'),
-            Text('Name: ${user.lastName}'),
-            Text('Email: ${user.userEmail}'),
-            // Add more user details as needed
-            StreamBuilder(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Text('Name: ${user.firstName}'),
+          Text('Name: ${user.lastName}'),
+          Text('Email: ${user.userEmail}'),
+          Text("MatNumber: ${user.matNumber}"),
+          // Add more user details as needed
+          Expanded(
+            child: StreamBuilder(
               stream: FirebaseFirestore.instance.collection("user_documents").doc(user.uid).collection("documents").snapshots(),
               builder: (context, AsyncSnapshot<QuerySnapshot> snapshot){
                 if (snapshot.connectionState == ConnectionState.waiting) {
@@ -109,9 +113,9 @@ class UserDetailsPage extends StatelessWidget {
                 }
                 return Text("nothing found");
               },
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }

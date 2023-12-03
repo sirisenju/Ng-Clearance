@@ -97,7 +97,6 @@ class _DepartmentClearanceState extends State<DepartmentClearance> {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

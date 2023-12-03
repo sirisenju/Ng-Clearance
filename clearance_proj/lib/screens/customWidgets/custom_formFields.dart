@@ -19,7 +19,7 @@ class MyFormField extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return SizedBox(
-      width: screenWidth * 0.90,
+      width: screenWidth,
       child: TextField(
         controller: controller,
         obscureText: hideText,

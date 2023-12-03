@@ -24,7 +24,7 @@ class _NavigationState extends State<Navigation> {
       body: <Widget>[
         const HomePage(),
         const ClearancePage(),
-        const CoursesPage()
+        const UserCheckStatus()
       ] [_currentIndex],
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
@@ -39,7 +39,7 @@ class _NavigationState extends State<Navigation> {
           NavigationDestination(
               icon: Icon(Icons.support_agent_rounded), label: "Clearance"),
           NavigationDestination(
-              icon: Icon(Icons.library_books_outlined), label: "Courses"),
+              icon: Icon(Icons.library_add_check_outlined), label: "Status"),
         ],
       )
     );

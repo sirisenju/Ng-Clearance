@@ -88,56 +88,92 @@ class _AdminRegistrationState extends State<AdminRegistration> {
 
   @override
   Widget build(BuildContext context) {
+
+    //height and width
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
-      backgroundColor: Colors.lightBlue,
+      backgroundColor: Colors.white,
       body: SafeArea(
-          child: Column(
-            children: [
-              const Text("Register as admin."),
-              const SizedBox(
-                height: 20,
-              ),
-              MyFormField(
-                  controller: _firstNameController,
-                  labelText: "firstName",
-                  hideText: false
-              ),
-              MyFormField(
-                  controller: _lastNameController,
-                  labelText: "lastName",
-                  hideText: false
-              ),
-              MyFormField(
-                  controller: _adminEmailController,
-                  labelText: "email address",
-                  hideText: false
-              ),
-              MyFormField(
-                  controller: _tokenController,
-                  labelText: "enter admin token",
-                  hideText: false
-              ),
-              MyFormField(
-                  controller: _passwordController,
-                  labelText: "password",
-                  hideText: false
-              ),
-              MyFormField(
-                  controller: _confirmPasswordController,
-                  labelText: "confirm password",
-                  hideText: false
-              ),
-              SizedBox(
-                width: 280,
-                child: MaterialButton(
-                  color: Colors.greenAccent,
-                  onPressed: () {
-                    registerAdmin();
-                  },
-                  child: const Text("Register"),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(left: 8, top: 10, right: 8, bottom: 0),
+                  child: Text("Register as admin.", style: TextStyle(
+                      fontSize: 23,
+                      fontWeight: FontWeight.w500
+                    ),
+                  ),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      MyFormField(
+                          controller: _firstNameController,
+                          labelText: "firstName",
+                          hideText: false
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      MyFormField(
+                          controller: _lastNameController,
+                          labelText: "lastName",
+                          hideText: false
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      MyFormField(
+                          controller: _adminEmailController,
+                          labelText: "email address",
+                          hideText: false
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      MyFormField(
+                          controller: _tokenController,
+                          labelText: "enter admin token",
+                          hideText: false
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      MyFormField(
+                          controller: _passwordController,
+                          labelText: "password",
+                          hideText: false
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      SizedBox(
+                        width: screenWidth,
+                        height: 60,
+                        child: MaterialButton(
+                          color: Colors.indigoAccent[200],
+                          onPressed: () {
+                            registerAdmin();
+                          },
+                          child: const Text("Register", style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.w600,
+                            fontSize: 23,
+                          ),),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           )
       ),
     );

@@ -31,8 +31,6 @@ class _ClearancePageState extends State<ClearancePage> {
     "Student Affairs Clearance",
   ];
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

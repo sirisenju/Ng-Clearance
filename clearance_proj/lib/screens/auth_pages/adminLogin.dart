@@ -4,7 +4,6 @@ import 'package:clearance_proj/screens/nav_screens/adminPanel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../customWidgets/alertWidget.dart';
 
 class AdminLogin extends StatefulWidget {
@@ -77,44 +76,91 @@ class _AdminLoginState extends State<AdminLogin> {
 
   @override
   Widget build(BuildContext context) {
+
+    //height and width
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
-      backgroundColor: Colors.cyanAccent,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text("Welcome back. Enter your details to continue."),
-          MyFormField(
-              controller: _emailController,
-              labelText: "Email",
-              hideText: false
-          ),
-          MyFormField(
-              controller: _passwordController,
-              labelText: "Password",
-              hideText: false
-          ),
-          SizedBox(
-            width: 280,
-            child: MaterialButton(
-              color: Colors.greenAccent,
-              onPressed: () {
-                // print("zero progress");
-                loginAdmin();
-              },
-              child: const Text("Login"),
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(left: 8, top: 10, right: 8, bottom: 2),
+              child: Text("Welcome back.", style: TextStyle(
+                  fontSize: 23,
+                  fontWeight: FontWeight.w500
+                ),
+              ),
             ),
-          ),
-          GestureDetector(
-            onTap: (){
-              Navigator.pushReplacement(
-                  context, MaterialPageRoute(
-                  builder: (context) => const AdminRegistration()));
-            },
-              child: const Text("Create admin account?", style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 20
-              ),)
-          )],
+            const Padding(
+              padding: EdgeInsets.only(left: 8, top: 0, right: 8, bottom: 10),
+              child: Text("Enter your details to continue.", style: TextStyle(
+                  fontSize: 23,
+                  fontWeight: FontWeight.w500
+              ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  MyFormField(
+                      controller: _emailController,
+                      labelText: "Email",
+                      hideText: false
+                  ),
+                  const SizedBox(height: 20),
+                  MyFormField(
+                      controller: _passwordController,
+                      labelText: "Password",
+                      hideText: false
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    width: screenWidth,
+                    height: 60,
+                    child: MaterialButton(
+                      color: Colors.indigoAccent[200],
+                      onPressed: () {
+                        // print("zero progress");
+                        loginAdmin();
+                      },
+                      child: const Text("Login",
+                        style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.w600,
+                        fontSize: 23,
+                      ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8, top: 10, right: 8, bottom: 10),
+              child: Container(
+                alignment: Alignment.bottomRight,
+                child: GestureDetector(
+                  onTap: (){
+                    Navigator.pushReplacement(
+                        context, MaterialPageRoute(
+                        builder: (context) => const AdminRegistration()));
+                  },
+                    child: Text("Create admin account?", style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 20,
+                      color: Colors.indigoAccent[200]
+                    ),)
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
