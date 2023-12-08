@@ -20,28 +20,33 @@ class _NavigationState extends State<Navigation> {
 
     // final screenWidth = MediaQuery.of(context).size.width;
     // final screenHeight = MediaQuery.of(context).size.height;
-    return Scaffold(
-      body: <Widget>[
-        const HomePage(),
-        const ClearancePage(),
-        const UserCheckStatus()
-      ] [_currentIndex],
-      bottomNavigationBar: NavigationBar(
-        onDestinationSelected: (int index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        selectedIndex: _currentIndex,
-        destinations: const <Widget>[
+    return SafeArea(
+      child: Scaffold(
+        body: <Widget>[
+          const HomePage(),
+          const ClearancePage(),
+          const UserCheckStatus()
+        ] [_currentIndex],
+
+        bottomNavigationBar: NavigationBar(
+          backgroundColor: Colors.transparent,
+          height: 65,
+          onDestinationSelected: (int index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+          selectedIndex: _currentIndex,
+          destinations: const <Widget>[
+              NavigationDestination(
+                  icon: Icon(Icons.home_outlined,), label: "Home"),
             NavigationDestination(
-                icon: Icon(Icons.home_outlined), label: "Home"),
-          NavigationDestination(
-              icon: Icon(Icons.support_agent_rounded), label: "Clearance"),
-          NavigationDestination(
-              icon: Icon(Icons.library_add_check_outlined), label: "Status"),
-        ],
-      )
+                icon: Icon(Icons.support_agent_rounded), label: "Clearance"),
+            NavigationDestination(
+                icon: Icon(Icons.library_add_check_outlined), label: "Status"),
+          ],
+        )
+      ),
     );
   }
 }

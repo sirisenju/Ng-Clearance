@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Sch_Classes extends StatelessWidget {
-  const Sch_Classes({super.key});
+class SchClasses extends StatelessWidget {
+  const SchClasses({super.key});
   @override
   Widget build(BuildContext context) {
 
@@ -27,7 +27,7 @@ class Sch_Classes extends StatelessWidget {
             height: screenHeight / 10,
             width: screenWidth,
             decoration: BoxDecoration(
-                color: Colors.greenAccent,
+                color: Colors.indigoAccent[200],
                 borderRadius: BorderRadius.circular(15.0)
             ),
             child: const Row(
@@ -37,7 +37,7 @@ class Sch_Classes extends StatelessWidget {
                   indent: 10.0,
                   endIndent: 10.0,
                   thickness: 2,
-                  color: Colors.orange,
+                  color: Colors.white,
                 ),
                 Expanded(
                   child: Padding(
@@ -49,16 +49,17 @@ class Sch_Classes extends StatelessWidget {
                         Text("CSC-221 Intro to computer programming",
                           style: TextStyle(
                               fontSize: 16,
-                              fontWeight: FontWeight.w600
+                              fontWeight: FontWeight.w600,
+                            color: Colors.white,
                           ),),
-                        Text("8:00am - 10:00am")
+                        Text("8:00am - 10:00am", style: TextStyle(color: Colors.white,),)
                       ],
                     ),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.all(10.0),
-                  child: Icon(Icons.arrow_right),
+                  child: Icon(Icons.arrow_right, color: Colors.white,),
                 ),
               ],
             ),
@@ -70,7 +71,7 @@ class Sch_Classes extends StatelessWidget {
             height: screenHeight / 10,
             width: screenWidth,
             decoration: BoxDecoration(
-                color: Colors.greenAccent,
+                color: Colors.indigoAccent[200],
                 borderRadius: BorderRadius.circular(15.0)
             ),
             child: const Row(
@@ -80,7 +81,7 @@ class Sch_Classes extends StatelessWidget {
                   indent: 10.0,
                   endIndent: 10.0,
                   thickness: 2,
-                  color: Colors.orange,
+                  color: Colors.white,
                 ),
                 Expanded(
                   child: Padding(
@@ -92,16 +93,17 @@ class Sch_Classes extends StatelessWidget {
                         Text("CSC-221 Intro to computer programming",
                           style: TextStyle(
                               fontSize: 16,
-                              fontWeight: FontWeight.w600
+                              fontWeight: FontWeight.w600,
+                            color: Colors.white,
                           ),),
-                        Text("8:00am - 10:00am")
+                        Text("8:00am - 10:00am", style: TextStyle(color: Colors.white,),)
                       ],
                     ),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.all(10.0),
-                  child: Icon(Icons.arrow_right),
+                  child: Icon(Icons.arrow_right, color: Colors.white,),
                 ),
               ],
             ),
@@ -113,7 +115,7 @@ class Sch_Classes extends StatelessWidget {
             height: screenHeight / 10,
             width: screenWidth,
             decoration: BoxDecoration(
-                color: Colors.greenAccent,
+                color: Colors.indigoAccent[200],
                 borderRadius: BorderRadius.circular(15.0)
             ),
             child: const Row(
@@ -123,7 +125,7 @@ class Sch_Classes extends StatelessWidget {
                   indent: 10.0,
                   endIndent: 10.0,
                   thickness: 2,
-                  color: Colors.orange,
+                  color: Colors.white,
                 ),
                 Expanded(
                   child: Padding(
@@ -135,16 +137,17 @@ class Sch_Classes extends StatelessWidget {
                         Text("CSC-221 Intro to computer programming",
                           style: TextStyle(
                               fontSize: 16,
-                              fontWeight: FontWeight.w600
+                              fontWeight: FontWeight.w600,
+                            color: Colors.white,
                           ),),
-                        Text("8:00am - 10:00am")
+                        Text("8:00am - 10:00am", style: TextStyle(color: Colors.white,),)
                       ],
                     ),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.all(10.0),
-                  child: Icon(Icons.arrow_right),
+                  child: Icon(Icons.arrow_right, color: Colors.white,),
                 ),
               ],
             ),
@@ -165,7 +168,7 @@ class Sch_Classes extends StatelessWidget {
             height: screenHeight / 10,
             width: screenWidth,
             decoration: BoxDecoration(
-                color: Colors.greenAccent,
+                color: Colors.indigoAccent[200],
                 borderRadius: BorderRadius.circular(15.0)
             ),
             child: const Row(
@@ -175,7 +178,7 @@ class Sch_Classes extends StatelessWidget {
                   indent: 10.0,
                   endIndent: 10.0,
                   thickness: 2,
-                  color: Colors.orange,
+                  color: Colors.white,
                 ),
                 Expanded(
                   child: Padding(
@@ -187,16 +190,17 @@ class Sch_Classes extends StatelessWidget {
                         Text("CSC-221 Intro to computer programming",
                           style: TextStyle(
                               fontSize: 16,
-                              fontWeight: FontWeight.w600
+                              fontWeight: FontWeight.w600,
+                            color: Colors.white,
                           ),),
-                        Text("8:00am - 10:00am")
+                        Text("8:00am - 10:00am", style: TextStyle(color: Colors.white,),)
                       ],
                     ),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.all(10.0),
-                  child: Icon(Icons.arrow_right),
+                  child: Icon(Icons.arrow_right, color: Colors.white,),
                 ),
               ],
             ),
@@ -209,7 +213,7 @@ class Sch_Classes extends StatelessWidget {
             height: screenHeight / 10,
             width: screenWidth,
             decoration: BoxDecoration(
-                color: Colors.greenAccent,
+                color: Colors.indigoAccent,
                 borderRadius: BorderRadius.circular(15.0)
             ),
             child: const Row(
@@ -219,7 +223,7 @@ class Sch_Classes extends StatelessWidget {
                   indent: 10.0,
                   endIndent: 10.0,
                   thickness: 2,
-                  color: Colors.orange,
+                  color: Colors.white,
                 ),
                 Expanded(
                   child: Padding(
@@ -231,16 +235,17 @@ class Sch_Classes extends StatelessWidget {
                         Text("CSC-221 Intro to computer programming",
                           style: TextStyle(
                               fontSize: 16,
-                              fontWeight: FontWeight.w600
+                              fontWeight: FontWeight.w600,
+                            color: Colors.white,
                           ),),
-                        Text("8:00am - 10:00am")
+                        Text("8:00am - 10:00am", style: TextStyle(color: Colors.white,),)
                       ],
                     ),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.all(10.0),
-                  child: Icon(Icons.arrow_right),
+                  child: Icon(Icons.arrow_right, color: Colors.white,),
                 ),
               ],
             ),

@@ -18,10 +18,29 @@ class _UserCheckStatusState extends State<UserCheckStatus> {
     return Scaffold(
       body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("All Document status"),
-            Text("Note: on the left are the names of the document submitted and on the right is the status."),
-            Text("Yellow: pending. Green: approved. Red: rejected"),
+            const SizedBox(
+              height: 10,
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 8.0),
+              child: Text("All Document status",
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500)
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 8.0),
+              child: Text("Note: on the left are the names of the document submitted and on the right is the status.",
+                  style: TextStyle(fontSize: 16)
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 8.0),
+              child: Text("Orange: pending. Green: approved. Red: rejected",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)
+              ),
+            ),
             Expanded(
               child: StreamBuilder(
                 stream: FirebaseFirestore.instance.collection("user_documents").doc(user?.uid).collection("documents").snapshots(),
@@ -45,13 +64,12 @@ class _UserCheckStatusState extends State<UserCheckStatus> {
                           }
                           else if(data["status"] == "pending"){
                             trailingIcon = Icons.pending_rounded;
-                            iconColor = Colors.yellow;
+                            iconColor = Colors.orange;
                           }
                           else{
                             trailingIcon = Icons.cancel_outlined;
                             iconColor = Colors.red;
                           }
-
                           return ListTile(
                             title: Text("${data["filename"]}"),
                             trailing: Icon(trailingIcon, color: iconColor,),
@@ -62,7 +80,7 @@ class _UserCheckStatusState extends State<UserCheckStatus> {
                   if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
                   }
-                  return Text("nothing found");
+                  return const Text("nothing found");
                 },
               ),
             ),

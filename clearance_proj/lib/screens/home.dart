@@ -3,6 +3,7 @@ import 'package:clearance_proj/screens/sub_screens/events.dart';
 import 'package:clearance_proj/screens/sub_screens/exams.dart';
 import 'package:clearance_proj/screens/sub_screens/sch_classes.dart';
 import 'package:clearance_proj/screens/welcome_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -47,46 +48,73 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          toolbarHeight: 80,
-          backgroundColor: Colors.transparent,
+          toolbarHeight: 60,
+          backgroundColor: Colors.indigoAccent[200],
           automaticallyImplyLeading: false,
+          leading: const Padding(
+            padding: EdgeInsets.all(5.0),
+            child: CircleAvatar(
+              backgroundImage: AssetImage("assets/checklist3.jpg"),
+              radius: 140.0,
+            ),
+          ),
           actions: [
-            IconButton(
-              alignment: Alignment.center,
-              icon: const Icon(
-                Icons.logout,
-                size: 30,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: IconButton(
+                alignment: Alignment.center,
+                icon: const Icon(
+                  Icons.logout,
+                  size: 30,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  //icon on pressed
+                  logoutUser();
+                },
               ),
-              onPressed: () {
-                //icon on pressed
-                logoutUser();
-              },
             )
           ],
-          title: const Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(right: 4.0),
-                child: CircleAvatar(
-                  backgroundImage: AssetImage("assets/checklist3.jpg"),
-                  radius: 30,
-                ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Hi,",
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  Text(
-                    "John Travolta",
-                    style: TextStyle(fontSize: 15),
-                  )
-                ],
-              )
-            ],
+          title: FutureBuilder(
+              future: getUserName(user!.uid),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting){
+                  // Display a loading indicator while fetching data
+                  return const CircularProgressIndicator();
+                }
+                else if (snapshot.hasError) {
+                  // Display an error message if an error occurs or the user is not found
+                  return const Text('Error');
+                }
+                else if(snapshot.hasData){
+                  //access the name and mat-number field
+                  String firstname = snapshot.data!['firstName'];
+                  String matNumber = snapshot.data!['matNumber'];
+
+                  //display them for view
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(firstname, style: const TextStyle(
+                          fontSize: 19,
+                          fontWeight: FontWeight.w500,
+                          fontStyle: FontStyle.italic,
+                        color: Colors.white
+                      ),),
+                      Text(matNumber, style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.italic,
+                          color: Colors.white
+                      ),),
+                    ],
+                  );
+                }
+                else {
+                  // display user not found
+                  return const Text("User not found.");
+                }
+              }
           ),
         ),
         body: SingleChildScrollView(
@@ -227,7 +255,6 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-
                 // Content Section (Changes based on button click)
                 SizedBox(
                   height: screenHeight,
@@ -242,10 +269,28 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  Future<Map<String, dynamic>?> getUserName(String documentId) async {
+    try {
+      DocumentSnapshot documentSnapshot =
+      await FirebaseFirestore.instance.collection('users').doc(documentId).get();
+
+      if (documentSnapshot.exists) {
+        String? userName = documentSnapshot.get('firstName');
+        String? matNo = documentSnapshot.get('matNumber');
+        return {'firstName': userName, 'matNumber': matNo};
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print("Error getting user name: $e");
+      return null;
+    }
+  }
+
   Widget buildContext() {
     switch(selectedPageIndex){
       case 0:
-        return const Sch_Classes();
+        return const SchClasses();
       case 1:
         return const Assessments();
       case 2:

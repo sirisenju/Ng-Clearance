@@ -97,37 +97,104 @@ class _StudentAffairsClearanceState extends State<StudentAffairsClearance> {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
+  //creating list
+  List<String> clearanceItems = [
+    "Stamped Nadestu dues",
+    "Stamped SUG dues",
+    "Letter of recognition",
+    "Birth certificate",
+    "WAEC result",
+    "JAMB result"
+  ];
+
   @override
   Widget build(BuildContext context) {
+
+    //height and width
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Colors.white60,
+      backgroundColor: Colors.white,
       body: SafeArea(
-        child: Column(
-          children: [
-            const Text("Welcome to your Student Affairs Clearance Guide."),
-            const Text(
-                "Pls make sure to submit the following documents listed below in a single pdf"),
-            ElevatedButton(
-              onPressed: () {
-                openFilePicker();
-              },
-              child: const Text("click to select the file"),
-            ),
-            MyFormField(
-                controller: fileNameController,
-                labelText: "Rename file",
-                hideText: false
-            ),
-            ElevatedButton(
-              onPressed: () {
-                uploadFiles(user!.uid, documentFile!, fileNameController.text);
-              },
-              child: const Text('upload'),
-            ),
-            Text(_fileName),
-            StatusWidget(userID: user!.uid)
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 30,
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 8.0),
+                child: Text("Welcome to your Student Affairs Clearance Guide.",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 8.0),
+                child: Text(
+                    "Pls make sure to submit the following documents listed below in a single pdf",
+                    style: TextStyle(fontSize: 18)
+                ),
+              ),
+              ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: clearanceItems.length,
+                  itemBuilder: (context, index){
+                    String item = clearanceItems[index];
+                    return ListTile(
+                      leading: const Icon(Icons.circle, size: 8,),
+                      title: Text(item, style: const TextStyle(fontStyle: FontStyle.italic),
+                      ),
+                    );
+                  }),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: screenWidth,
+                      child: MaterialButton(
+                        height: 60,
+                        color: Colors.indigoAccent[200],
+                        onPressed: () {
+                          openFilePicker();
+                        },
+                        child: const Text("click to select the file", style: TextStyle(fontSize: 18, color: Colors.white),),
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+                      child: Text(
+                          "Select a proper name for the file.", style: TextStyle(fontSize: 18)
+                      ),
+                    ),
+                    MyFormField(
+                        controller: fileNameController,
+                        labelText: "Rename file",
+                        hideText: false
+                    ),
+                    const SizedBox(height: 10,),
+                    SizedBox(
+                      width: screenWidth,
+                      child: MaterialButton(
+                        height: 60,
+                        color: Colors.indigoAccent[200],
+                        onPressed: () {
+                          uploadFiles(user!.uid, documentFile!, fileNameController.text);
+                        },
+                        child: const Text('upload', style: TextStyle(fontSize: 18, color: Colors.white),),
+                      ),
+                    ),
+                    const SizedBox(height: 10,),
+                    Text(_fileName, style: const TextStyle(fontSize: 18),),
+                    StatusWidget(userID: user!.uid)
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -162,7 +229,7 @@ Future<String> getStatus(String userID) async {
         return 'Status field does not exist in the document.';
       }
     } else {
-      return 'Document does not exist.';
+      return 'Upload a document.';
     }
   } catch (e) {
     return 'Error getting status: $e';
@@ -182,9 +249,9 @@ class StatusWidget extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const CircularProgressIndicator();
         } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
+          return Text('Error: ${snapshot.error}', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),);
         } else {
-          return Text('Status: ${snapshot.data}');
+          return Text('Status: ${snapshot.data}', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),);
         }
       },
     );

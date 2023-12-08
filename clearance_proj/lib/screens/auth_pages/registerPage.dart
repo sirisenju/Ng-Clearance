@@ -1,7 +1,7 @@
 import 'package:clearance_proj/screens/customWidgets/alertWidget.dart';
 import 'package:clearance_proj/screens/customWidgets/custom_formFields.dart';
 import 'package:clearance_proj/screens/data_models/user_model.dart';
-import 'package:clearance_proj/screens/home.dart';
+import 'package:clearance_proj/screens/navigation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +65,8 @@ class _UserRegistrationState extends State<UserRegistration> {
         //navigate to new screen upon success
         Navigator.pushReplacement(
             context, MaterialPageRoute(
-            builder: (context) => const HomePage()));
+            builder: (context) => const Navigation())
+        );
       }
 
       on FirebaseAuthException catch (e){
@@ -104,7 +105,7 @@ class _UserRegistrationState extends State<UserRegistration> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 const Text("Enter Your Details correctly to register!",
