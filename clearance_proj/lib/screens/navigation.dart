@@ -1,6 +1,6 @@
 import 'package:clearance_proj/screens/home.dart';
 import 'package:clearance_proj/screens/nav_screens/clearance.dart';
-import 'package:clearance_proj/screens/nav_screens/courses.dart';
+import 'package:clearance_proj/screens/nav_screens/clearanceStatus.dart';
 import 'package:flutter/material.dart';
 
 class Navigation extends StatefulWidget {

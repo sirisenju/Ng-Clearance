@@ -122,15 +122,15 @@ class _HealthCenterClearanceState extends State<HealthCenterClearance> {
               const SizedBox(
                 height: 30,
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 8.0),
-                child: const Text("Welcome to your Health Center Clearance Guide.",
+                child: Text("Welcome to your Health Center Clearance Guide.",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 8.0),
-                child: const Text(
+                child: Text(
                     "Pls make sure to submit the following documents listed below in a single pdf",
                     style: TextStyle(fontSize: 18)
                 ),
@@ -237,7 +237,7 @@ Future<String> getStatus(String userID) async {
 class StatusWidget extends StatelessWidget {
   final String userID;
 
-  StatusWidget({required this.userID});
+  const StatusWidget({super.key, required this.userID});
 
   @override
   Widget build(BuildContext context) {

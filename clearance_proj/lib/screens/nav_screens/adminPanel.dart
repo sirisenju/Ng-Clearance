@@ -4,6 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
+import '../customWidgets/custom_formFields.dart';
+
 class AdminPage extends StatelessWidget {
   const AdminPage({super.key});
 
@@ -82,10 +84,51 @@ class AdminPage extends StatelessWidget {
 class UserDetailsPage extends StatelessWidget {
   final UserData user;
 
-  const UserDetailsPage({super.key, required this.user});
+  UserDetailsPage({super.key, required this.user});
+
+  //text controllers
+  final TextEditingController _commentTextController = TextEditingController();
+
+  Future<void> addComment(BuildContext context, String uid, String comment, TextEditingController controller) async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    DocumentReference docRef = firestore.collection('user_documents').doc(user.uid);
+
+    return docRef.set({
+      'comments': FieldValue.arrayUnion([comment])
+    }, SetOptions(merge: true))
+        .then((_) {
+      showSuccessDialog(context);
+      controller.clear(); // Clear the input field after successful submission
+    })
+        .catchError((error) {
+    });
+  }
+
+
+  void showSuccessDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Success"),
+          content: const Text("Comment added successfully!"),
+          actions: <Widget>[
+            TextButton(
+              child: const Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop(); // Dismiss the dialog
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    //height and width
+    final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
@@ -141,7 +184,42 @@ class UserDetailsPage extends StatelessWidget {
                     return const Text("nothing found");
                   },
                 ),
-              )
+              ),
+              const Text("Comment Box", style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 23,
+              ),
+              ),
+              const SizedBox(height: 10,),
+              MyFormField(
+                controller: _commentTextController,
+                labelText: "leave a comment",
+                hideText: false,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              SizedBox(
+                width: screenWidth,
+                child: MaterialButton(
+                  height: 60,
+                  color: Colors.deepPurple,
+                  onPressed: () {
+                    if(_commentTextController.text.isNotEmpty){
+                      addComment(context, user.uid!, _commentTextController.text, _commentTextController);
+                      _commentTextController.clear(); // Clear the input field after submission
+                    }
+                  },
+                  child: const Text("Comment",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18,
+                        color: Colors.white
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10,),
             ],
           ),
         ),

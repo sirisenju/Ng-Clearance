@@ -235,7 +235,7 @@ Future<String> getStatus(String userID) async {
 class StatusWidget extends StatelessWidget {
   final String userID;
 
-  StatusWidget({required this.userID});
+  const StatusWidget({super.key, required this.userID});
 
   @override
   Widget build(BuildContext context) {

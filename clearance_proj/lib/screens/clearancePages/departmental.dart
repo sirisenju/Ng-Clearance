@@ -171,7 +171,7 @@ class _DepartmentClearanceState extends State<DepartmentClearance> {
                         labelText: "Rename file",
                         hideText: false
                     ),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     SizedBox(
                       width: screenWidth,
                       child: MaterialButton(

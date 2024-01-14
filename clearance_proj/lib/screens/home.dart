@@ -282,7 +282,6 @@ class _HomePageState extends State<HomePage> {
         return null;
       }
     } catch (e) {
-      print("Error getting user name: $e");
       return null;
     }
   }

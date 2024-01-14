@@ -166,6 +166,7 @@ class _ClearancePageState extends State<ClearancePage> {
                         },
                       );
                   }
+                  return null;
                 })
               ],
             ),

@@ -13,6 +13,39 @@ class _UserCheckStatusState extends State<UserCheckStatus> {
   //instance of the signed in user
   final user = FirebaseAuth.instance.currentUser;
 
+  String latestComment = '';
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchLatestComment();
+  }
+
+  Future<void> fetchLatestComment() async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    DocumentReference docRef = firestore.collection('user_documents').doc(user!.uid);
+
+    try {
+      DocumentSnapshot doc = await docRef.get();
+      if (doc.exists) {
+        Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+        List<dynamic> comments = data['comments'];
+        if (comments.isNotEmpty) {
+          setState(() {
+            latestComment = comments.last; // Assuming the last comment is the latest
+            isLoading = false;
+          });
+        }
+      }
+    } catch (error) {
+      print("Error fetching comment: $error");
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,6 +115,26 @@ class _UserCheckStatusState extends State<UserCheckStatus> {
                   }
                   return const Text("nothing found");
                 },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("Admin comment.", style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 23,
+                  ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: isLoading
+                        ? const CircularProgressIndicator()
+                        : Text(
+                        latestComment.isNotEmpty ? latestComment : "No comments yet", style: const TextStyle(fontSize: 18)),
+                  )
+                ],
               ),
             ),
           ],

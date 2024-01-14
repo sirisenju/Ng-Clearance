@@ -134,8 +134,8 @@ class _LibraryClearanceState extends State<LibraryClearance> {
                   itemBuilder: (context, index){
                     String item = clearanceItems[index];
                     return ListTile(
-                      leading: Icon(Icons.circle, size: 8,),
-                      title: Text(item, style: TextStyle(fontStyle: FontStyle.italic),),
+                      leading: const Icon(Icons.circle, size: 8,),
+                      title: Text(item, style: const TextStyle(fontStyle: FontStyle.italic),),
                     );
                   }),
               Padding(
@@ -165,7 +165,7 @@ class _LibraryClearanceState extends State<LibraryClearance> {
                         labelText: "Rename file",
                         hideText: false
                     ),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     SizedBox(
                       width: screenWidth,
                       child: MaterialButton(
@@ -229,7 +229,7 @@ Future<String> getStatus(String userID) async {
 class StatusWidget extends StatelessWidget {
   final String userID;
 
-  StatusWidget({required this.userID});
+  const StatusWidget({super.key, required this.userID});
 
   @override
   Widget build(BuildContext context) {
